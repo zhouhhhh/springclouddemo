@@ -5,15 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.zh</groupId>
-        <artifactId>clouddemo</artifactId>
+        <artifactId>services</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <packaging>pom</packaging>
-    <modules>
-        <module>service-product</module>
-        <module>service-order</module>
-    </modules>
-    <artifactId>services</artifactId>
+
+    <artifactId>service-product</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
