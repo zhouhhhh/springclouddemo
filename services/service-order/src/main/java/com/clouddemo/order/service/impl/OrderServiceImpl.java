@@ -29,7 +29,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order createOrder(Long productId, Long userId) {
         //Product product = getProductFromRemote(productId);
-        Product product = getProductFromRemoteLoadBalancer(productId);
+        Product product = getProductFromRemoteLoadBalanced(productId);
         Order order = new Order();
         order.setUserId(userId);
         order.setId(1L);
@@ -54,6 +54,11 @@ public class OrderServiceImpl implements OrderService {
         return product;
     }
 
+    /**
+     * 负载均衡调用
+     * @param productId
+     * @return
+     */
     private Product getProductFromRemoteLoadBalancer(Long productId) {
         //1.获取到商品服务所在的所有机器IP
         ServiceInstance choose = loadBalancerClient.choose("service-product");
@@ -63,5 +68,14 @@ public class OrderServiceImpl implements OrderService {
         //2.给远程服务发送请求
         Product product = restTemplate.getForObject(url, Product.class);
         return product;
+    }
+
+    /**
+     * 负载均衡注解
+     */
+    private Product getProductFromRemoteLoadBalanced(Long productId) {
+        return restTemplate.getForObject(
+                "http://service-product/product/" + productId,
+                Product.class);
     }
 }
