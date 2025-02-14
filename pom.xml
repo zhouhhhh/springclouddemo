@@ -16,6 +16,7 @@
     <description>clouddemo</description>
     <modules>
         <module>services</module>
+        <module>model</module>
     </modules>
 
     <properties>

@@ -1,5 +1,6 @@
 package com.clouddemo.order.bean;
 
+import com.clouddemo.product.bean.Product;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -12,6 +13,6 @@ public class Order {
     private Long userId;
     private String nickName;
     private String address;
-    private List<Object> prodctList;
+    private List<Product> prodctList;
 
 }
